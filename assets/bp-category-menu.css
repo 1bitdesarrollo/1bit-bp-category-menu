@@ -1,0 +1,225 @@
+/**
+ * 1Bit - BP Category Menu
+ * Megamenú de categorías: fondo blanco, títulos negros,
+ * subcategorías en el gris de los submenús de WoodMart y negro al pasar el mouse.
+ */
+
+/* ---------- Escritorio ---------- */
+
+/* Fondo blanco del desplegable de WoodMart que contiene el menú,
+   aunque el ítem quede con "Esquema de color: Oscuro". */
+.wd-dropdown-menu:has(.bp-cm),
+.wd-dropdown-menu:has(.bp-cm) > .container {
+	background-color: #fff !important;
+	color: #000;
+}
+
+/* Diseño "Establecer tamaños" de WoodMart: respeta el ancho cargado en el
+   menú, pero nunca más que la pantalla (así se adapta en pantallas chicas). */
+.wd-dropdown-menu.wd-design-sized:has(.bp-cm) {
+	width: min(var(--wd-dropdown-width), calc(100vw - 30px)) !important;
+}
+
+.bp-cm {
+	--bp-cm-cols: 6;
+	background: #fff;
+	color: #000;
+	padding: 25px 0 30px;
+	text-align: left;
+	line-height: 1.4;
+	/* Si hay muchas columnas, el panel no pasa del alto de la pantalla:
+	   se desplaza por dentro. */
+	max-height: calc(100vh - 160px);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+
+.bp-cm__grid {
+	display: grid;
+	grid-template-columns: repeat(var(--bp-cm-cols), minmax(0, 1fr));
+	gap: 28px 30px;
+	align-items: start;
+}
+
+/* Colores como los submenús de WoodMart ("Marcas"): mismo gris
+   (--sub-menu-color) y transición. El gris se define acá porque esa
+   variable el tema la declara solo dentro de .wd-sub-menu. */
+.bp-cm {
+	--sub-menu-color: rgb(51.2745098039%, 51.2745098039%, 51.2745098039%);
+	--bp-cm-hover: #000;
+}
+
+.bp-cm a,
+.bp-cm a:visited {
+	text-decoration: none !important;
+	transition: color .25s ease;
+}
+
+/* Títulos de columna (categoría marcada): negro. */
+.bp-cm .bp-cm__title,
+.bp-cm .bp-cm__title:visited {
+	color: #000 !important;
+}
+
+.bp-cm .bp-cm__title:hover,
+.bp-cm .bp-cm__title:focus-visible {
+	color: #000 !important;
+	text-decoration: underline !important;
+	text-underline-offset: 3px;
+}
+
+/* Subcategorías y sub-subcategorías: gris; al pasar el mouse, negro (sin subrayado). */
+.bp-cm .bp-cm__link,
+.bp-cm .bp-cm__link:visited {
+	color: var(--sub-menu-color) !important;
+}
+
+.bp-cm .bp-cm__link:hover,
+.bp-cm .bp-cm__link:focus-visible {
+	color: var(--bp-cm-hover) !important;
+}
+
+.bp-cm__title {
+	display: block;
+	margin-bottom: 12px;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #e5e5e5;
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .02em;
+}
+
+.bp-cm ul,
+.bp-cm li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.bp-cm .bp-cm__list > li {
+	margin-bottom: 10px;
+}
+
+.bp-cm__link--l2 {
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.bp-cm .bp-cm__sublist {
+	margin-top: 4px;
+}
+
+.bp-cm .bp-cm__sublist > li {
+	margin: 0;
+}
+
+.bp-cm__link--l3,
+.bp-cm .bp-cm__sublist .bp-cm__link {
+	display: inline-block;
+	padding: 2px 0;
+	font-size: 13px;
+	font-weight: 400;
+}
+
+/* Sub-subcategorías desplegables con flecha. */
+.bp-cm--collapsible .bp-cm__item--has-children:not(.is-open) > .bp-cm__sublist {
+	display: none;
+}
+
+.bp-cm .bp-cm__row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 6px;
+}
+
+.bp-cm .bp-cm__toggle {
+	all: unset;
+	box-sizing: border-box;
+	display: inline-flex;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border-radius: 3px;
+	cursor: pointer;
+	color: var(--sub-menu-color);
+	transition: color .25s ease;
+}
+
+/* La flecha acompaña al gris y pasa a negro al pasar el mouse o al abrir. */
+.bp-cm .bp-cm__toggle:hover,
+.bp-cm .bp-cm__row:hover .bp-cm__toggle,
+.bp-cm .is-open > .bp-cm__row .bp-cm__toggle {
+	color: var(--bp-cm-hover);
+}
+
+.bp-cm .bp-cm__toggle:focus-visible {
+	outline: 2px solid #000;
+	outline-offset: 1px;
+}
+
+.bp-cm .bp-cm__chevron {
+	display: block;
+	width: 7px;
+	height: 7px;
+	margin-top: -3px;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: rotate(45deg);
+	transition: transform .2s ease, margin .2s ease;
+}
+
+.bp-cm .is-open > .bp-cm__row .bp-cm__chevron {
+	margin-top: 3px;
+	transform: rotate(-135deg);
+}
+
+.bp-cm--collapsible .bp-cm__sublist {
+	padding-left: 10px;
+	border-left: 1px solid #e5e5e5;
+	margin-bottom: 4px;
+}
+
+/* Pantallas medianas: columnas automáticas para que no se aprieten. */
+@media (max-width: 1299px) {
+	.bp-cm__grid {
+		grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+	}
+}
+
+/* ---------- Móvil (menú lateral de WoodMart) ---------- */
+
+/* Sangría por nivel para que se entienda el árbol; el resto del estilo
+   (tamaños, colores, flecha) es el del tema, igual que "Marcas". */
+.wd-nav-mobile .bp-cm-mobile > li > a {
+	padding-inline-start: 30px;
+}
+
+.wd-nav-mobile .bp-cm-mobile > li > .wd-sub-menu > li > a {
+	padding-inline-start: 45px;
+}
+
+.wd-nav-mobile .bp-cm-mobile > li > .wd-sub-menu > li > .wd-sub-menu > li > a {
+	padding-inline-start: 60px;
+	font-size: 13px;
+}
+
+.wd-nav-mobile .bp-cm-mobile > li > .wd-sub-menu > li > .wd-sub-menu > li > .wd-sub-menu a {
+	padding-inline-start: 75px;
+	font-size: 13px;
+}
+
+/* Flecha visible aunque el ítem tenga Bloque HTML asignado. */
+.wd-nav.wd-nav-mobile .bp-cm-mobile-parent.menu-item-has-children .wd-nav-opener {
+	display: flex;
+}
+
+/* Si en WoodMart se activa "mostrar Bloques HTML en el menú móvil", se
+   oculta la grilla de escritorio: en móvil se usa el árbol desplegable. */
+.wd-nav-mobile .bp-cm-mobile-parent > .wd-dropdown-menu {
+	display: none !important;
+}
