@@ -13,6 +13,16 @@ Plugin independiente (no forma parte de 1Bit - BP Plugin Suite).
 | **Requiere PHP** | 7.4 o superior |
 | **Licencia** | [GPLv2 o posterior](https://www.gnu.org/licenses/gpl-2.0.html) |
 
+## Documentación
+
+| Documento | Para quién | Descripción |
+|---|---|---|
+| [Guía de uso (PDF)](docs/guia-de-uso.pdf) | Cliente | Cómo elegir las categorías del menú, ubicar el botón en el menú, la pantalla WooCommerce → Menú de categorías y cómo se actualiza. |
+
+Los documentos se guardan en la carpeta [`docs/`](docs/). Al hacer clic, GitHub muestra el PDF en el navegador y desde ahí se puede descargar. Enlace directo: https://github.com/1bitdesarrollo/1bit-bp-category-menu/blob/main/docs/guia-de-uso.pdf
+
+> La carpeta `docs/` es solo para el repositorio: no va dentro del `.zip` que se sube a WordPress.
+
 ## Requisitos
 
 - WordPress + [WooCommerce](https://woocommerce.com/) (si WooCommerce no está activo, el plugin queda en pausa y avisa en el escritorio).
@@ -120,6 +130,8 @@ Desactivar no borra nada. **Borrar** el plugin desde wp-admin elimina sus ajuste
 1bit-bp-category-menu/
 ├── 1bit-bp-category-menu.php                # Cabecera y arranque (requiere WooCommerce)
 ├── uninstall.php                            # Limpieza al borrar el plugin
+├── docs/                                    # Documentación (no va en el .zip del plugin)
+│   └── guia-de-uso.pdf                      # Guía de uso para el cliente
 ├── assets/
 │   ├── bp-category-menu.css                 # Estilos del megamenú y sangría en móvil
 │   └── bp-category-menu.js                  # Inserta el árbol en el menú móvil de WoodMart
