@@ -8,7 +8,7 @@ Plugin independiente (no forma parte de 1Bit - BP Plugin Suite).
 
 | | |
 |---|---|
-| **Versión** | 1.0.0 |
+| **Versión** | 1.0.1 |
 | **Requiere WordPress** | 5.8 o superior |
 | **Requiere PHP** | 7.4 o superior |
 | **Licencia** | [GPLv2 o posterior](https://www.gnu.org/licenses/gpl-2.0.html) |
@@ -133,10 +133,15 @@ Desactivar no borra nada. **Borrar** el plugin desde wp-admin elimina sus ajuste
 
 ## Changelog
 
+### 1.0.1
+- Colores iguales al menú principal de WoodMart ("Productos", "Marcas"): títulos de columna y textos con `--nav-color` (hoy #333333) y hover con `--nav-color-hover` (hoy el color principal del tema, #030304), tomados del tema. Si cambian en WoodMart, el megamenú los sigue.
+- Subcategorías: siguen en el gris de los submenús y al pasar el mouse toman el mismo color de hover.
+- Se quita el subrayado al pasar el mouse por los títulos de columna.
+
 ### 1.0.0
 - Versión inicial para producción:
   - Campos "Incluir en menú de categorías" y "Orden" en el formulario de las categorías de producto, y columna "Menú" en el listado.
-  - Shortcode `[bp_category_menu]` para el Bloque HTML de WoodMart: grilla de columnas con fondo blanco, títulos en negro y subcategorías en el gris de los submenús del tema (`--sub-menu-color`), negro al pasar el mouse.
+  - Shortcode `[bp_category_menu]` para el Bloque HTML de WoodMart: grilla de columnas con fondo blanco, títulos en el color del menú principal y subcategorías en el gris de los submenús del tema (`--sub-menu-color`).
   - Profundidad de 1 a 4 niveles o todos; cada nivel con hijas se despliega con una flecha.
   - Se omiten las categorías sin productos.
   - Caché por idioma con invalidación automática ante cambios de categorías, productos o ajustes, resguardo de 12 h y botón "Regenerar menú".

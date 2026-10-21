@@ -57,7 +57,7 @@ class OneBitBP_CM_Frontend {
 		);
 
 		if ( '' === $html && current_user_can( 'manage_woocommerce' ) ) {
-			return '<p class="bp-cm-empty" style="padding:15px;background:#fff;color:#000">Menú de categorías: no hay categorías marcadas como "Incluir en menú" (o no tienen productos). Este aviso solo lo ven los administradores.</p>';
+			return '<p class="bp-cm-empty" style="padding:15px;background:#fff;color:#333333">Menú de categorías: no hay categorías marcadas como "Incluir en menú" (o no tienen productos). Este aviso solo lo ven los administradores.</p>';
 		}
 		return $html;
 	}

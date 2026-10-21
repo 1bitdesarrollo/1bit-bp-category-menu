@@ -1,7 +1,8 @@
 /**
  * 1Bit - BP Category Menu
- * Megamenú de categorías: fondo blanco, títulos negros,
- * subcategorías en el gris de los submenús de WoodMart y negro al pasar el mouse.
+ * Megamenú de categorías: fondo blanco, títulos con el color del menú
+ * principal de WoodMart, subcategorías en el gris de los submenús y, al pasar
+ * el mouse, el mismo color de hover que el menú principal.
  */
 
 /* ---------- Escritorio ---------- */
@@ -11,7 +12,7 @@
 .wd-dropdown-menu:has(.bp-cm),
 .wd-dropdown-menu:has(.bp-cm) > .container {
 	background-color: #fff !important;
-	color: #000;
+	color: var(--nav-color, #333333);
 }
 
 /* Diseño "Establecer tamaños" de WoodMart: respeta el ancho cargado en el
@@ -23,7 +24,7 @@
 .bp-cm {
 	--bp-cm-cols: 6;
 	background: #fff;
-	color: #000;
+	color: var(--bp-cm-color);
 	padding: 25px 0 30px;
 	text-align: left;
 	line-height: 1.4;
@@ -41,34 +42,39 @@
 	align-items: start;
 }
 
-/* Colores como los submenús de WoodMart ("Marcas"): mismo gris
-   (--sub-menu-color) y transición. El gris se define acá porque esa
-   variable el tema la declara solo dentro de .wd-sub-menu. */
+/* Colores del menú principal de WoodMart ("Productos", "Marcas"):
+   - Títulos y texto: --nav-color (hoy #333333).
+   - Hover: --nav-color-hover (hoy el color principal del tema, #030304).
+   Las dos variables las define el tema en el menú (.wd-nav) y el panel las
+   hereda, así que si cambian en el tema, el megamenú las sigue. Los valores
+   después de la coma son respaldo por si el shortcode se usa fuera del menú.
+   Subcategorías: gris de los submenús del tema (--sub-menu-color); se define
+   acá porque el tema lo declara solo dentro de .wd-sub-menu. */
 .bp-cm {
+	--bp-cm-color: var(--nav-color, var(--wd-link-color, #333333));
+	--bp-cm-hover: var(--nav-color-hover, var(--wd-primary-color, #333333));
 	--sub-menu-color: rgb(51.2745098039%, 51.2745098039%, 51.2745098039%);
-	--bp-cm-hover: #000;
 }
 
 .bp-cm a,
 .bp-cm a:visited {
 	text-decoration: none !important;
-	transition: color .25s ease;
+	transition: color .25s;
 }
 
-/* Títulos de columna (categoría marcada): negro. */
+/* Títulos de columna (categoría marcada): color del menú principal;
+   al pasar el mouse, el mismo color de hover que "Productos" / "Marcas". */
 .bp-cm .bp-cm__title,
 .bp-cm .bp-cm__title:visited {
-	color: #000 !important;
+	color: var(--bp-cm-color) !important;
 }
 
 .bp-cm .bp-cm__title:hover,
 .bp-cm .bp-cm__title:focus-visible {
-	color: #000 !important;
-	text-decoration: underline !important;
-	text-underline-offset: 3px;
+	color: var(--bp-cm-hover) !important;
 }
 
-/* Subcategorías y sub-subcategorías: gris; al pasar el mouse, negro (sin subrayado). */
+/* Subcategorías y sub-subcategorías: gris; al pasar el mouse, el color de hover del menú principal. */
 .bp-cm .bp-cm__link,
 .bp-cm .bp-cm__link:visited {
 	color: var(--sub-menu-color) !important;
@@ -150,7 +156,7 @@
 	transition: color .25s ease;
 }
 
-/* La flecha acompaña al gris y pasa a negro al pasar el mouse o al abrir. */
+/* La flecha acompaña al gris y toma el color de hover al pasar el mouse o al abrir. */
 .bp-cm .bp-cm__toggle:hover,
 .bp-cm .bp-cm__row:hover .bp-cm__toggle,
 .bp-cm .is-open > .bp-cm__row .bp-cm__toggle {
@@ -158,7 +164,7 @@
 }
 
 .bp-cm .bp-cm__toggle:focus-visible {
-	outline: 2px solid #000;
+	outline: 2px solid var(--bp-cm-color);
 	outline-offset: 1px;
 }
 

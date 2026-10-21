@@ -3,7 +3,7 @@
  * Plugin Name:       1Bit - BP Category Menu
  * Plugin URI:        https://blackpaprikastore.com.ar
  * Description:       Megamenú con los árboles de las categorías de WooCommerce marcadas como "Incluir en menú de categorías". Se inserta con el shortcode [bp_category_menu] en un Bloque HTML de WoodMart asignado a un ítem del menú, y en móvil se muestra como submenú desplegable.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            1Bit
@@ -25,7 +25,7 @@ if ( defined( 'ONEBITBP_CM_VERSION' ) ) {
 	return;
 }
 
-define( 'ONEBITBP_CM_VERSION', '1.0.0' );
+define( 'ONEBITBP_CM_VERSION', '1.0.1' );
 define( 'ONEBITBP_CM_FILE', __FILE__ );
 define( 'ONEBITBP_CM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ONEBITBP_CM_URL', plugin_dir_url( __FILE__ ) );
